@@ -1,0 +1,16 @@
+{
+  "todos": [
+    {
+      "title": "learn node",
+      "complete": true
+    },
+    {
+      "title": "complete cli project",
+      "complete": true
+    },
+    {
+      "title": "complete pwgen",
+      "complete": false
+    }
+  ]
+}
