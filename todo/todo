@@ -26,6 +26,7 @@ const usage = function(){
             new:        used to create a new todo
             get:        retreive your todos
             complete:   mark todo as complete
+            delete:     delete todo
             help:       print the usage guide
     `
 
@@ -40,7 +41,7 @@ function errLog(error){
 
 
 //arg.lengths
-if(args.length > 3 && args[2] != 'complete'){
+    if(args.length > 3 && args[2] != 'complete'){
     errLog('Only one argument to be passed with the command')
     usage()
     return
@@ -104,6 +105,7 @@ function getTodos() {
     if (todo.complete) {
       todoText += ' ✔ ️' // add a check mark
     }
+
     console.log(todoText)
   })
   return
@@ -114,21 +116,21 @@ function getTodos() {
 function completeTodo() {
   // check that length
   if (args.length != 4) {
-    errorLog("invalid number of arguments passed for complete command")
+    errLog("invalid number of arguments passed for complete command")
     return
   }
 
   let n = Number(args[3])
   // check if the value is a number
   if (isNaN(n)) {
-    errorLog("please provide a valid number for complete command")
+    errLog("please provide a valid number for complete command")
     return
   }
 
   // check if correct length of values has been passed
   let todosLength = db.get('todos').value().length
   if (n > todosLength) {
-    errorLog("invalid number passed for complete command.")
+    errLog("invalid number passed for complete command.")
     return
   }
 

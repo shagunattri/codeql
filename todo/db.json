@@ -1,15 +1,11 @@
 {
   "todos": [
     {
-      "title": "learn node",
-      "complete": true
+      "title": "sp3ppr",
+      "complete": false
     },
     {
-      "title": "complete cli project",
-      "complete": true
-    },
-    {
-      "title": "complete pwgen",
+      "title": "shagun",
       "complete": false
     }
   ]
