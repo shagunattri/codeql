@@ -29,7 +29,7 @@
 ****
 
 
-***todo helps you manage your todo tasks.***
+### todo helps you manage your todo tasks.
 
 
 ```console
