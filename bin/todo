@@ -1,0 +1,143 @@
+#!/usr/bin/env node
+
+const chalk = require('chalk')
+const rl = require('readline');
+const low = require('lowdb')
+const FileSync = require('lowdb/adapters/FileSync')
+
+
+const args = process.argv
+const adapter = new FileSync('db.json')
+const db = low(adapter)
+db.defaults({todos: []}).write()        //set json defaults
+
+
+
+
+const usage = function(){
+    const usageText = `
+    todo helps you manage your todo tasks.
+
+    usage:
+        todo <command> <id>
+
+        commands:
+
+            new:        used to create a new todo
+            get:        retreive your todos
+            complete:   mark todo as complete
+            help:       print the usage guide
+
+        id:
+
+            [0-9]:      index value of todo task
+    `
+
+    console.log(usageText)
+}
+
+//toerr
+function errLog(error){
+    const errorlog = chalk.red(error)
+    console.log(errorlog)
+}
+
+
+//arg.lengths
+    if(args.length > 3 && args[2] != 'complete'){
+    errLog('Only one argument to be passed with the command')
+    usage()
+    return
+}
+
+
+//arg calls
+switch(args[2]) {
+    case 'help':
+        usage()
+        break
+    case 'new':
+        newTodo()
+    case 'get':
+        getTodos()
+        break
+    case 'complete':
+        completeTodo()
+        break
+    default:
+        errLog('Invalid Command passed!')
+        //usage()
+}
+
+//ques
+function prompt(question){
+    const r = rl.createInterface({
+        input:process.stdin,
+        output: process.stdout,
+        terminal: false
+    });
+    return new Promise((resolve,error) => {
+        r.question(question,answer => {
+            r.close()
+            resolve(answer)
+        });
+    })
+}
+
+
+//new
+function newTodo() {
+    const q = chalk.blue('Type in your todo\n')
+    prompt(q).then(todo => {
+        db.get('todos')
+            .push({
+                title:todo,
+                complete:false
+            })
+            .write()
+    })
+}
+
+
+//get
+function getTodos() {
+  const todos = db.get('todos').value()
+  let index = 1;
+  todos.forEach(todo => {
+    let todoText = `${index++}. ${todo.title}`
+    if (todo.complete) {
+      todoText += ' ✔ ️' // add a check mark
+    }
+
+    console.log(todoText)
+  })
+  return
+}
+
+
+//complete todo
+function completeTodo() {
+  // check that length
+  if (args.length != 4) {
+    errLog("invalid number of arguments passed for complete command")
+    return
+  }
+
+  let n = Number(args[3])
+  // check if the value is a number
+  if (isNaN(n)) {
+    errLog("please provide a valid number for complete command")
+    return
+  }
+
+  // check if correct length of values has been passed
+  let todosLength = db.get('todos').value().length
+  if (n > todosLength) {
+    errLog("invalid number passed for complete command.")
+    return
+  }
+
+  // update the todo item marked as complete
+  db.set(`todos[${n-1}].complete`, true).write()
+}
+
