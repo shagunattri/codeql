@@ -65,6 +65,12 @@ $ todo <commmand>  #run one of the four todo commands
 - nodejs
 - npm
 
+### Dependencies
+- [lowdb](https://github.com/typicode/lowdb)
+- [chalk](https://github.com/chalk/chalk)
+- [fs](https://nodejs.org/api/fs.html)
+
+
 ### Examples
 
 ```console
@@ -85,3 +91,12 @@ When contributing to this repository, please first discuss the change you wish t
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
+
+### References
+
+- https://www.sitepoint.com/javascript-command-line-interface-cli-node-js/
+- https://developer.okta.com/blog/2019/06/18/command-line-app-with-nodejs
+- https://developer.okta.com/blog/2019/06/18/command-line-app-with-nodejs
+- https://scotch.io/tutorials/building-cli-applications-with-nodejs
+- https://scotch.io/tutorials/build-an-interactive-command-line-application-with-nodejs
