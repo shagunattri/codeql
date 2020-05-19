@@ -29,7 +29,9 @@
 ****
 
 
-todo helps you manage your todo tasks.
+***todo helps you manage your todo tasks.***
+
+
 ```console
     usage:
         todo <command> <id>
@@ -63,6 +65,17 @@ $ todo <commmand>  #run one of the four todo commands
 - nodejs
 - npm
 
+### Examples
+
+```console
+$ todo help         #prints usage of todo
+
+$ todo new          #add a new todo
+
+$ todo complete 1   # mark todo as complete based on the index
+
+$ todo get          # display all todos
+```
 
 ## Contributing
 
