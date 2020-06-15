@@ -59,6 +59,7 @@ $ npm install
 
 $ todo <commmand>  #run one of the four todo commands
 ```
+**Add the executable to your path or alias it to the executable location**
 
 ### Prerequisites
 
