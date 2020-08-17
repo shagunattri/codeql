@@ -14,12 +14,13 @@ int main(int argc,char **argv) {
 
     length = strlcpy(buffer2,argv[1],MAX_SIZE);
 
+    printf("strlcpy(buffer2+%d,argv[2],%d);\n",length,MAX_SIZE-length);
     strlcpy(buffer2+length,argv[2],MAX_SIZE-length);
 
     printf("Buffer1: %s\n",buffer1);
+    printf("Buffer2:%s\n",buffer2);
     printf("Buffer3:%s\n",buffer3);
 
-    printf("Buffer2:%s\n",buffer2);
     printf("Length:%d\n",length);
     printf("strlen:%d\n",strlen(buffer2));
 }
